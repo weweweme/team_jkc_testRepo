@@ -26,9 +26,16 @@ public class TestInput : MonoBehaviour
     private void FixedUpdate()
     {
         Movement();
-        
-        Debug.Log($"{_rigid.velocity}");
+        BodyRotation();
+        MoveToBody();
     }
+
+    private void MoveToBody()
+    {
+        Vector3 prevPlayerPos = new Vector3(_characterBody.position.x, _characterBody.position.y - 1, _characterBody.position.z);
+        _playerCameraArm.position = prevPlayerPos;
+    }
+
 
     public void OnMousePos(InputAction.CallbackContext ctx)
     {
@@ -40,6 +47,8 @@ public class TestInput : MonoBehaviour
     public void OnPlayerMovementDir(InputAction.CallbackContext ctx)
     {
         PrimitiveMoveVec = ctx.ReadValue<Vector3>();
+
+        CurrentMoveDirection();
     }
 
     private void SetCameraAngle()
@@ -62,23 +71,25 @@ public class TestInput : MonoBehaviour
                 cameraAngle.z);
     }
 
+    private Vector3 forwardAngleVec;
+    private Vector3 rightAngleVec;
+    private Vector3 moveDir;
+    
     private void CurrentMoveDirection()
     {
-        
+        if (PrimitiveMoveVec != zeroVec)
+        {
+            forwardAngleVec = new Vector3(_playerCameraArm.forward.x, 0f, _playerCameraArm.forward.z).normalized;
+            rightAngleVec = new Vector3(_playerCameraArm.right.x, 0f, _playerCameraArm.right.z).normalized;
+            moveDir = forwardAngleVec * PrimitiveMoveVec.y + rightAngleVec * PrimitiveMoveVec.x;
+        }
     }
     
     private void Movement()
     {
         if (PrimitiveMoveVec != zeroVec)
         {
-            Vector3 forwardAngleVec = new Vector3(_playerCameraArm.forward.x, 0f, _playerCameraArm.forward.z).normalized;
-            Vector3 rightAngleVec = new Vector3(_playerCameraArm.right.x, 0f, _playerCameraArm.right.z).normalized;
-            Vector3 moveDir = forwardAngleVec * PrimitiveMoveVec.y + rightAngleVec * PrimitiveMoveVec.x;
-
-            _characterBody.forward = moveDir;
-            _rigid.AddForce(moveDir * 20f,ForceMode.Force);
-            
-            // _rigid.velocity = moveDir * 5f;
+            _rigid.AddForce(moveDir * 10f,ForceMode.Force);
         }
     }
 
@@ -86,8 +97,7 @@ public class TestInput : MonoBehaviour
     {
         if (PrimitiveMoveVec != zeroVec)
         {
-            _characterBody.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_playerInput.InputVec), _rotSpeed * Time.deltaTime); 
+            _characterBody.rotation = Quaternion.Lerp(_characterBody.rotation, Quaternion.LookRotation(moveDir), 5f * Time.fixedDeltaTime);
         }
     }
-    
 }
