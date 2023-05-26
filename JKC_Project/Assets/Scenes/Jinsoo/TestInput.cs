@@ -89,7 +89,9 @@ public class TestInput : MonoBehaviour
     {
         if (PrimitiveMoveVec != zeroVec)
         {
-            _rigid.AddForce(moveDir * 10f,ForceMode.Force);
+            // _rigid.AddForce(moveDir * 10f,ForceMode.Force);
+
+            _rigid.velocity = moveDir * 5f;
         }
     }
 
