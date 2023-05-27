@@ -31,19 +31,19 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    public bool CanceledGrab;
+    public bool isGrab;
     public void OnGrab(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            CanceledGrab = false;
+            isGrab = true;
             _animator.SetBool("IsGrab", true);
             OnGrabButtonDown?.Invoke();
         }
 
         if (context.canceled)
         {
-            CanceledGrab = true;
+            isGrab = false;
             _animator.SetBool("IsGrab", false);
             _animator.SetBool("IsGrabSuccess", false);
             OnGrabButtonUp?.Invoke();

@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e887067c09cc456c97a5bb29ed3326e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 1
+  _duration: 0.5
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +269,16 @@ PrefabInstance:
       propertyPath: m_Weight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1405227712360140752, guid: 4fe99af011b484061b050261c85907b1,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405227712360140765, guid: 4fe99af011b484061b050261c85907b1,
+        type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1715314533783699791, guid: 4fe99af011b484061b050261c85907b1,
         type: 3}
       propertyPath: m_Name
@@ -287,7 +297,7 @@ PrefabInstance:
     - target: {fileID: 2055283921717713909, guid: 4fe99af011b484061b050261c85907b1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.33
+      value: 4.418
       objectReference: {fileID: 0}
     - target: {fileID: 2055283921717713909, guid: 4fe99af011b484061b050261c85907b1,
         type: 3}
@@ -536,3 +546,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 634ce3ef58f7d497b80e0a6625663332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &2101605172
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101605150}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.00601144, z: 0.01}
+  m_Center: {x: 0, y: 0.001994277, z: 0}
