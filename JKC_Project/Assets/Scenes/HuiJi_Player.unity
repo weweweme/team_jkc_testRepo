@@ -305,6 +305,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5360964722331189641, guid: 4fe99af011b484061b050261c85907b1,
+        type: 3}
+      propertyPath: m_Force.y
+      value: -80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fe99af011b484061b050261c85907b1, type: 3}
 --- !u!1001 &759439897
@@ -318,6 +323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plane
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871754500254209810, guid: 3910c4707c3ef46bdb54c9a3c902698a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 8871754500254209814, guid: 3910c4707c3ef46bdb54c9a3c902698a,
         type: 3}
