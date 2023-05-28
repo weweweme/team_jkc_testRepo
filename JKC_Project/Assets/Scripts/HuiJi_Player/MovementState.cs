@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Literal;
 using UnityEngine;
 
 public class MovementState : StateMachineBehaviour
@@ -32,12 +33,13 @@ public class MovementState : StateMachineBehaviour
         if (_playerInput.IsJump)
         {
             //Jump State로 전이
+            animator.SetBool(AnimLiteral.ISJUMPING, true);
         }
 
         // Grab키를 눌렀을때
         if (_playerInput.IsAttempingGrab)
         {
-            animator.SetBool("IsGrab", true);
+            animator.SetBool(AnimLiteral.ISGRAB, true);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Literal;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
@@ -9,8 +10,6 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField] private float _deceleration = 0.5f;
     
     private float _velocity;
-    
-    private static readonly int MOVESPEED = Animator.StringToHash("MoveSpeed");
 
     private void Awake()
     {
@@ -32,14 +31,21 @@ public class PlayerAnimation : MonoBehaviour
             _velocity = Mathf.Clamp(_velocity, 0, 1);
         }
         
-        _animator.SetFloat(MOVESPEED, _velocity);
+        _animator.SetFloat(AnimLiteral.MOVESPEED, _velocity);
     }
     
     private void OnCollisionEnter(Collision collision)
     {
+        // AttempingGrab중 GrabBox랑 닿으면 Grab로 전이
         if (collision.gameObject.CompareTag("GrabBox") && _animator.GetBool("IsGrab"))
         {
             _animator.SetBool("IsGrabSuccess", true);
+        }
+
+        // Jump후 땅이랑 닿으면 Movement로 Exit.
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            _animator.SetBool(AnimLiteral.ISJUMPING, false);
         }
     }
 }
