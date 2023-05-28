@@ -1,0 +1,4 @@
+
+ocsharpsquid:S101"SRename class 'mParent' to match pascal case naming rules, consider using 'MParent'.(Οÿώσ
+Ccsharpsquid:S3903"&Move 'mParent' into a named namespace.(Οÿώσ
+acsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(ϋ§”
