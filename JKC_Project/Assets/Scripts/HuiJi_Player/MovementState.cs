@@ -41,5 +41,10 @@ public class MovementState : StateMachineBehaviour
         {
             animator.SetBool(AnimLiteral.ISGRAB, true);
         }
+
+        if (_playerInput.IsDive)
+        {
+            animator.SetBool(AnimLiteral.ISDIVING, true);
+        }
     }
 }
