@@ -245,6 +245,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1405227712360140755, guid: 4fe99af011b484061b050261c85907b1,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.0045817746
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405227712360140755, guid: 4fe99af011b484061b050261c85907b1,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.00019875019
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405227712360140755, guid: 4fe99af011b484061b050261c85907b1,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.0006011435
+      objectReference: {fileID: 0}
     - target: {fileID: 1405227712360140765, guid: 4fe99af011b484061b050261c85907b1,
         type: 3}
       propertyPath: m_ActionEvents.Array.size
@@ -365,7 +380,8 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2101605172, guid: 4fe99af011b484061b050261c85907b1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4fe99af011b484061b050261c85907b1, type: 3}
 --- !u!1001 &759439897
 PrefabInstance:
@@ -687,3 +703,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _diveForce: 30
+  _rotationSpeed: 300

@@ -47,5 +47,10 @@ public class PlayerAnimation : MonoBehaviour
         {
             _animator.SetBool(AnimLiteral.ISJUMPING, false);
         }
+
+        if (collision.gameObject.CompareTag("Ground") && _animator.GetBool(AnimLiteral.ISDIVING))
+        {
+            _animator.SetBool(AnimLiteral.ISDIVING, false);
+        }
     }
 }

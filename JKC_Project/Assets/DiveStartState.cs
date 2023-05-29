@@ -5,11 +5,8 @@ public class DiveStartState : StateMachineBehaviour
 {
     [SerializeField] private float _rotationSpeed;
     
-    private Rigidbody _playerRigidbody;
     private float _targetRotation = 90;
     private Vector3 _currentRotation;
-
-    private Vector3 _playerDirection;
 
     public static event Action OnDive; 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
