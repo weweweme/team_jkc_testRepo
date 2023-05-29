@@ -9,7 +9,7 @@ public class MovementState : StateMachineBehaviour
     private PlayerInput _playerInput;
     
     [SerializeField] private float _rotSpeed = 5f;
-    [SerializeField] private float _moveSpeed = 10f;
+    [SerializeField] private float _moveSpeed;
     
     private Vector3 _zeroVec = Vector3.zero;
     

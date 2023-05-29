@@ -1,14 +1,23 @@
+using System;
 using UnityEngine;
 
 public class DiveStartState : StateMachineBehaviour
 {
     [SerializeField] private float _rotationSpeed;
+    
+    private Rigidbody _playerRigidbody;
     private float _targetRotation = 90;
     private Vector3 _currentRotation;
+
+    private Vector3 _playerDirection;
+
+    public static event Action OnDive; 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Upper Layer의 weight를 0으로 설정한다.
         animator.SetLayerWeight(1, 0);
+        
+        OnDive?.Invoke();
     }
     
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
