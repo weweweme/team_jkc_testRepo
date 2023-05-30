@@ -21,11 +21,11 @@ public class MovementState : StateMachineBehaviour
     
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _playerRigidbody.AddForce(_playerInput.InputVec * _moveSpeed, ForceMode.Force);
-
         // 인풋이 있을때만 회전을 한다. 
         if (_playerInput.InputVec != _zeroVec)
         {
+            Debug.Log($"Movement Layer: {layerIndex}");
+            _playerRigidbody.velocity = _playerInput.InputVec * _moveSpeed;
             animator.transform.rotation = Quaternion.Lerp(animator.transform.rotation, Quaternion.LookRotation(_playerInput.InputVec), _rotSpeed * Time.deltaTime);    
         }
 

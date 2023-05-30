@@ -43,7 +43,7 @@ public class PlayerAnimation : MonoBehaviour
         }
 
         // Jump후 땅이랑 닿으면 Movement로 Exit.
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") && _animator.GetBool(AnimLiteral.ISJUMPING))
         {
             _animator.SetBool(AnimLiteral.ISJUMPING, false);
         }

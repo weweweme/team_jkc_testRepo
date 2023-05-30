@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody _playerRigidbody;
     
     [SerializeField] private float _diveForce;
+    [SerializeField] private float _jumpForce;
 
     private void Awake()
     {
@@ -15,23 +16,37 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
-        DiveStartState.OnDive -= ActivateDiveMove;
-        DiveStartState.OnDive += ActivateDiveMove;
+        DiveStartState.OnDive -= ActivateDiveAction;
+        DiveStartState.OnDive += ActivateDiveAction;
 
         DiveGetUpState.OnDiveGetUp -= ActivateGetUp;
         DiveGetUpState.OnDiveGetUp += ActivateGetUp;
+
+        JumpStartState.OnJump -= ActivateJumpAction;
+        JumpStartState.OnJump += ActivateJumpAction;
     }
 
-    void ActivateDiveMove()
+    private void ActivateJumpAction()
     {
-        DiveMove().Forget();
+        JumpAction().Forget();
+    }
+
+    // 위로 Jump한다.
+    private async UniTaskVoid JumpAction()
+    {
+        _playerRigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+    }
+
+    void ActivateDiveAction()
+    {
+        DiveAction().Forget();
     }
 
     private Vector3 _playerDirection;
     private Vector3 _diveDirection;
     
     // Dive시 앞으로 점프한다.
-    private async UniTaskVoid DiveMove()
+    private async UniTaskVoid DiveAction()
     {
         await UniTask.DelayFrame(3);
         
