@@ -51,4 +51,18 @@ public class PlayerInput : MonoBehaviour
             _animator.SetBool("IsGrabSuccess", false);
         }
     }
+    
+    public bool IsDive { get; private set; }
+    public void OnDive(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            IsDive = true;
+        }
+
+        if (context.canceled)
+        {
+            IsDive = false;
+        }
+    }
 }

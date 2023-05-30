@@ -8,7 +8,7 @@ public class JumpStartState : StateMachineBehaviour
     {
         _playerRigidbody = animator.GetComponent<Rigidbody>();
 
-        // Upper Layer의 weight를 0으로 설정한다.
+        
         animator.SetLayerWeight(1, 0);
         
         // 위로 Jump한다.
