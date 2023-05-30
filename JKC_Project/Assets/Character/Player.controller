@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443a9ad1f3fff4a51aea24af53c27035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 100
+  _moveSpeed: 50
   _rotSpeed: 5
 --- !u!1102 &-3277385089897700750
 AnimatorState:
@@ -539,7 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f00c6979b4b549c2830ef89e1fde353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 50
+  _jumpForce: 300
 --- !u!1101 &-1259829647984404802
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotSpeed: 5
-  _moveSpeed: 300
+  _moveSpeed: 800
 --- !u!1101 &-633777417196773155
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -883,7 +883,7 @@ AnimatorStateMachine:
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 4284791283412491732}
-    m_Position: {x: -200, y: 140, z: 0}
+    m_Position: {x: -210, y: 140, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: -6800157688686027242}
     m_Position: {x: 220, y: 140, z: 0}

@@ -245,6 +245,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1405227712360140752, guid: 4fe99af011b484061b050261c85907b1,
+        type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405227712360140752, guid: 4fe99af011b484061b050261c85907b1,
+        type: 3}
+      propertyPath: m_Mass
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1405227712360140755, guid: 4fe99af011b484061b050261c85907b1,
         type: 3}
       propertyPath: m_Radius
@@ -373,7 +383,7 @@ PrefabInstance:
     - target: {fileID: 5360964722331189641, guid: 4fe99af011b484061b050261c85907b1,
         type: 3}
       propertyPath: m_Force.y
-      value: -80
+      value: -500
       objectReference: {fileID: 0}
     - target: {fileID: 5360964722331189647, guid: 4fe99af011b484061b050261c85907b1,
         type: 3}
@@ -702,5 +712,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aab86becc27641e79c5092eee675ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _diveForce: 30
+  _diveForce: 100
   _rotationSpeed: 300
