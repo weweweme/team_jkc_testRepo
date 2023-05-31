@@ -1,3 +1,4 @@
+using System;
 using Literal;
 using UnityEngine;
 
@@ -55,5 +56,13 @@ public class PlayerAnimation : MonoBehaviour
 
         Debug.Log(collision.impulse.magnitude);
         _animator.SetFloat("CollisionForce", collision.impulse.magnitude);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Boundary"))
+        {
+            _animator.SetTrigger(AnimLiteral.ISFALL);
+        }
     }
 }
