@@ -17,13 +17,13 @@ public class ObstacleBumper : MonoBehaviour
             Vector3.Reflect(collisionVector,normalVector);
         reflectionDirection *= other.impulse.magnitude;
         
-        Debug.Log($"{other.impulse.magnitude}");
+        // Debug.Log($"{other.impulse.magnitude}");
         
-        // UnableToControlPlayerInput(other).Forget();
+        UnableToControlPlayerInput(other).Forget();
 
-        Debug.Log($"입사각 : {collisionVector}");
-        Debug.Log($"충돌 법선 벡터 : {other.contacts[0].normal}");
-        Debug.Log($"반사각 : {reflectionDirection}");
+        // Debug.Log($"입사각 : {collisionVector}");
+        // Debug.Log($"충돌 법선 벡터 : {other.contacts[0].normal}");
+        // Debug.Log($"반사각 : {reflectionDirection}");
         
         // collisionObjectRigid.AddForce(reflectionDirection * reflectForce, ForceMode.Impulse);
 
@@ -33,12 +33,13 @@ public class ObstacleBumper : MonoBehaviour
     // 플레이어가 부딪힐 경우 잠시 조작할 수 없게 만드는 UniTask
     private async UniTaskVoid UnableToControlPlayerInput(Collision col)
     {
-        TestInput testInput = col.gameObject.GetComponentInParent<TestInput>();
-        testInput.IsReflect = true;
+        PlayerInput playerInput = col.gameObject.GetComponent<PlayerInput>();
+        // TestInput testInput = col.gameObject.GetComponentInParent<TestInput>();
+        playerInput.IsReflect = true;
         
-        await UniTask.Delay(TimeSpan.FromSeconds(2f));
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
 
-        testInput.IsReflect = false;
+        playerInput.IsReflect = false;
     }
     
 }

@@ -52,5 +52,8 @@ public class PlayerAnimation : MonoBehaviour
         {
             _animator.SetBool(AnimLiteral.ISDIVING, false);
         }
+
+        Debug.Log(collision.impulse.magnitude);
+        _animator.SetFloat("CollisionForce", collision.impulse.magnitude);
     }
 }
