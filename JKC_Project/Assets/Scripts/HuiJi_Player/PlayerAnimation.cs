@@ -62,7 +62,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Boundary"))
         {
-            _animator.SetTrigger(AnimLiteral.ISFALL);
+            _animator.SetBool(AnimLiteral.ISFALL, true);
         }
     }
 }

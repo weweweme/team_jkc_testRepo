@@ -29,20 +29,20 @@ public class ObstacleBumper : MonoBehaviour
         Debug.Log($"충돌 법선 벡터 : {other.contacts[0].normal}");
         Debug.Log($"반사각 : {reflectionDirection}");
         
-        collisionObjectRigid.AddForce(reflectionDirection * reflectForce * collisionImpulseForce, ForceMode.Impulse);
+       // collisionObjectRigid.AddForce(reflectionDirection * reflectForce * collisionImpulseForce, ForceMode.Impulse);
 
-        // collisionObjectRigid.velocity = reflectionDirection * reflectForce;
+        collisionObjectRigid.velocity = reflectionDirection * reflectForce * collisionImpulseForce;
     }
     
     // 플레이어가 부딪힐 경우 잠시 조작할 수 없게 만드는 UniTask
     private async UniTaskVoid UnableToControlPlayerInput(Collision col)
     {
-        TestInput testInput = col.gameObject.GetComponentInParent<TestInput>();
-        testInput.IsReflect = true;
+        PlayerInput playerInput = col.gameObject.GetComponentInParent<PlayerInput>();
+        playerInput.IsReflect = true;
         
-        await UniTask.Delay(TimeSpan.FromSeconds(2f));
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
 
-        testInput.IsReflect = false;
+        playerInput.IsReflect = false;
     }
     
 }
