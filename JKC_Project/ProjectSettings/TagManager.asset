@@ -4,8 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bullet
-  - GrabBox
   - Ground
   layers:
   - Default
