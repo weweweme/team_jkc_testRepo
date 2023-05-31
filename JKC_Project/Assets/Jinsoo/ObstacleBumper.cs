@@ -17,6 +17,8 @@ public class ObstacleBumper : MonoBehaviour
             Vector3.Reflect(collisionVector,normalVector);
         reflectionDirection *= other.impulse.magnitude;
         
+        Debug.Log($"{other.impulse.magnitude}");
+        
         // UnableToControlPlayerInput(other).Forget();
 
         Debug.Log($"입사각 : {collisionVector}");
