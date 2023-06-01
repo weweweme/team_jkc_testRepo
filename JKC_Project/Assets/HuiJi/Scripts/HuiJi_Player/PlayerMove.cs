@@ -1,6 +1,11 @@
+using System;
 using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// 
+/// </summary>
 public class PlayerMove : MonoBehaviour
 {
     private Animator _animator;
@@ -83,4 +88,35 @@ public class PlayerMove : MonoBehaviour
             await UniTask.Yield();
         }
     }
+    
+    private Vector3 tmp;
+
+    private void FixedUpdate()
+    {
+        // _playerRigidbody.velocity = tmp;
+        // _playerRigidbody.velocity = _inputVector * tmpVector;
+        
+    }
+
+    void MoveMoveGO()
+    {
+        // Move
+        // tmp = Vector3 inputVec * moveSpeed;
+    }
+
+    void SetJumpSpeed()
+    {
+        // moveSpeed = 0.5;
+    }
+
+    void SetCommonSpeed()
+    {
+        // moveSpeed = 1
+    }
+
+    void SetDiveSpeed()
+    {
+        // moveSpeed = 0
+    }
+    
 }

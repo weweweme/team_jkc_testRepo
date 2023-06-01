@@ -18,7 +18,8 @@ public class ObstacleBumper : MonoBehaviour
             Vector3.Reflect(collisionVector,normalVector);
 
         float collisionImpulseForce = other.impulse.magnitude;
-        collisionImpulseForce = Mathf.Max(MinimuCollisionValue, collisionImpulseForce);
+        // collisionImpulseForce = Mathf.Max(MinimuCollisionValue, collisionImpulseForce);
+        collisionImpulseForce = Mathf.Clamp(collisionImpulseForce, 50, 270);
         
         Debug.Log($"impulseMagnitude : {other.impulse.magnitude}");
         Debug.Log($"collisionImpulseForce : {collisionImpulseForce}");

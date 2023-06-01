@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Literal;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class PlayerAnimation : MonoBehaviour
     
     [SerializeField] private float _acceleration = 0.5f;
     [SerializeField] private float _deceleration = 0.5f;
+    [SerializeField] private float _topplingForce;
     
     private float _velocity;
 
@@ -20,6 +22,9 @@ public class PlayerAnimation : MonoBehaviour
     
     private void Update()
     {
+        // Grab시 max값의 변수를 0.5로 변환하게 하는 로직 필요. 평소에는 max값이 1.
+        // 위의 로직 함수를 Grab State에서 호출한다.
+        
         if (_playerInput.InputVec.x != 0 || _playerInput.InputVec.z != 0)
         {
             _velocity += Time.deltaTime * _acceleration;
@@ -34,7 +39,8 @@ public class PlayerAnimation : MonoBehaviour
         
         _animator.SetFloat(AnimLiteral.MOVESPEED, _velocity);
     }
-    
+
+    private bool _isGround;
     private void OnCollisionEnter(Collision collision)
     {
         // AttempingGrab중 GrabBox랑 닿으면 Grab로 전이
@@ -54,8 +60,37 @@ public class PlayerAnimation : MonoBehaviour
             _animator.SetBool(AnimLiteral.ISDIVING, false);
         }
 
-        Debug.Log(collision.impulse.magnitude);
-        _animator.SetFloat("CollisionForce", collision.impulse.magnitude);
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            _animator.SetBool(AnimLiteral.ISFALL, false);
+
+            _isGround = true;
+        }
+        
+        if (collision.impulse.magnitude > _topplingForce && collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
+        {
+            _animator.SetBool(AnimLiteral.ISFALL, true);
+            CheckFallStateAfterDelay(delay: 0.5f).Forget();
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            _isGround = false;
+        }
+    }
+
+    // Ground에 닿았는데도 여전히 Fall상태일때 IsFall을 false로 만들어주는 함수.
+    private async UniTaskVoid CheckFallStateAfterDelay(float delay)
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(delay));
+
+        if (_animator.GetBool(AnimLiteral.ISFALL) && _isGround)
+        {
+            _animator.SetBool(AnimLiteral.ISFALL, false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

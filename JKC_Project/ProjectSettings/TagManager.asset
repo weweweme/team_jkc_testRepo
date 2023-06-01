@@ -7,11 +7,12 @@ TagManager:
   - Ground
   - GrabBox
   - Boundary
+  - Mat
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
