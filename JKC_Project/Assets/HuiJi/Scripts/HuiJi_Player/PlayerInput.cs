@@ -16,6 +16,7 @@ public class PlayerInput : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
+    public bool IsReflect { get; set; }
     public void OnMove(InputAction.CallbackContext context)
     {
         InputVec = context.ReadValue<Vector3>();
