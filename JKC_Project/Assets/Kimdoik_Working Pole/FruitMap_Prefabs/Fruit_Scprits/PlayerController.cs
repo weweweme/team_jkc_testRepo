@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Transform _cameraTransform;
     private float _mouseSensitivity = 2f;
     private float _rotationX = 0f;
+    public bool Immobilized;
 
     void Awake()
     {
@@ -20,20 +21,25 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+    private void Start()
+    {
+        Immobilized = true;
+    }
 
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(x, 0f, y) * _speed * Time.deltaTime;
-        _playerRigidbody.MovePosition(transform.position + movement);
-
-       
-
-        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        if (Immobilized)
         {
-            _isGrounded = false;
-            _playerRigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            float x = Input.GetAxis("Horizontal");
+            float y = Input.GetAxis("Vertical");
+            Vector3 movement = new Vector3(x, 0f, y) * _speed * Time.deltaTime;
+            _playerRigidbody.MovePosition(transform.position + movement);
+
+            if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+            {
+                _isGrounded = false;
+                _playerRigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            }
         }
     }
 
