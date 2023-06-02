@@ -17,5 +17,23 @@ namespace Model
         {
             _remainingTime = 90;
         }
+
+        private static int _currentScreenSizeIndex;
+        public static int CurrentScreenSizeIndex
+        {
+            get { return _currentScreenSizeIndex; }
+        }
+
+        private static int _prevScreenSizeIndex;
+        public static int PrevScreenSizeIndex
+        {
+            get { return _prevScreenSizeIndex; }
+        }
+
+        public static void SetCurrentScreenSizeIndex(int index)
+        {
+            _prevScreenSizeIndex = _currentScreenSizeIndex;
+            _currentScreenSizeIndex = index;
+        }
     }
 }
