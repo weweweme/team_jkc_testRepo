@@ -41,7 +41,7 @@ public class ObstacleBumper : MonoBehaviour
         PlayerInput playerInput = col.gameObject.GetComponentInParent<PlayerInput>();
         playerInput.IsReflect = true;
         
-        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
 
         playerInput.IsReflect = false;
     }
