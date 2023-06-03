@@ -2,14 +2,15 @@ using System;
 using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// 
 /// </summary>
 public class PlayerMove : MonoBehaviour
 {
-    private Animator _animator;
     private Rigidbody _playerRigidbody;
+    private PlayerInput _playerInput;
     
     [SerializeField] private float _diveForce;
     [SerializeField] private float _jumpForce;
@@ -17,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
+        _playerInput = GetComponent<PlayerInput>();
     }
 
     private void Start()
@@ -29,6 +31,9 @@ public class PlayerMove : MonoBehaviour
 
         JumpStartState.OnJump -= ActivateJumpAction;
         JumpStartState.OnJump += ActivateJumpAction;
+
+        RecoveryState.OnRecoveryState -= ActivateRecovery;
+        RecoveryState.OnRecoveryState += ActivateRecovery;
     }
 
     private void ActivateJumpAction()
@@ -71,7 +76,8 @@ public class PlayerMove : MonoBehaviour
 
     private Vector3 _currentRotation;
     private Quaternion _targetRotation;
-    [SerializeField] private float _rotationSpeed;
+    [SerializeField] private float _diveRotationSpeed;
+    [SerializeField] private float _fallRotationSpeed;
     
     // 캐릭터가 Dive이후 일어나게 하는 함수.
     private async UniTaskVoid GetUp()
@@ -82,11 +88,45 @@ public class PlayerMove : MonoBehaviour
         while (Quaternion.Angle(transform.rotation, _targetRotation) > 0.1f)
         {
             // 캐릭터의 원래 방향으로 rotation한다.
-            float step = _rotationSpeed * Time.deltaTime;
+            float step = _diveRotationSpeed * Time.deltaTime;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, step);
             
             await UniTask.Yield();
         }
+    }
+
+    // 평지에서 Fall 이후 다시 일어나게 하는 함수.
+    void ActivateRecovery()
+    {
+        Recovery().Forget();
+    }
+    
+    private async UniTaskVoid Recovery()
+    {
+        _playerInput.IsReflect = true;
+        
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+        
+        _currentRotation = transform.rotation.eulerAngles;
+        _targetRotation = Quaternion.Euler(0, _currentRotation.y, 0);
+        
+        _playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        
+        Debug.Log($"Fall Rotation : {_currentRotation}");
+        // Debug.Break();
+        
+        while (Quaternion.Angle(transform.rotation, _targetRotation) > 0.1f)
+        {
+            // 캐릭터의 원래 방향으로 rotation한다.
+            float step = _fallRotationSpeed * Time.deltaTime;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRotation, step);
+            
+            await UniTask.Yield();
+        }
+
+        
+       // Debug.Break();
+        _playerInput.IsReflect = false;
     }
     
     private Vector3 tmp;
