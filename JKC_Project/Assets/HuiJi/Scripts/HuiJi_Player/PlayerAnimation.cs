@@ -7,6 +7,7 @@ public class PlayerAnimation : MonoBehaviour
 {
     private Animator _animator;
     private PlayerInput _playerInput;
+    private Rigidbody _playerRigidbody;
     
     [SerializeField] private float _acceleration = 0.5f;
     [SerializeField] private float _deceleration = 0.5f;
@@ -18,6 +19,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _playerInput = GetComponent<PlayerInput>();
+        _playerRigidbody = GetComponent<Rigidbody>();
     }
     
     private void Update()
@@ -93,11 +95,19 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
+    [SerializeField] private Transform _respawnPosition; 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Boundary"))
         {
             _animator.SetBool(AnimLiteral.ISFALL, true);
+        }
+
+        if (other.gameObject.CompareTag("Respawn"))
+        {
+            transform.position = _respawnPosition.position;
+            _animator.SetBool(AnimLiteral.ISRESPAWNING, true);
+            _playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
 }
