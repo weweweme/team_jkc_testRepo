@@ -13,5 +13,10 @@ namespace Model
         {
             ++_countReactiveProperty.Value;
         }
+
+        public static void ResetCount()
+        {
+            _countReactiveProperty.Value = default;
+        }
     }
 }
