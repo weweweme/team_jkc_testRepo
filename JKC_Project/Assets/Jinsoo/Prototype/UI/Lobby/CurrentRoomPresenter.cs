@@ -32,11 +32,9 @@ public class CurrentRoomPresenter : Presenter
             NotInRoom();
             SetActiveCurrentRoomText(false, true);
         }
-
-        Observable.EveryUpdate()
-            .ObserveEveryValueChanged(_ => Model.LobbyRoomModel.StartCount)
-            .Subscribe(_ => SetCountDownText());
     }
+    
+    
 
     private void InRoom()
     {
@@ -86,6 +84,10 @@ public class CurrentRoomPresenter : Presenter
 
     public void JoinStream()
     {
+        Observable.EveryUpdate()
+            .ObserveEveryValueChanged(_ => Model.LobbyRoomModel.StartCount)
+            .Subscribe(_ => SetCountDownText());
+        
         Observable.EveryUpdate()
             .ObserveEveryValueChanged(_ => PhotonNetwork.CurrentRoom.PlayerCount)
             .Subscribe(_ => UpdateCurrentPlayerCount());
