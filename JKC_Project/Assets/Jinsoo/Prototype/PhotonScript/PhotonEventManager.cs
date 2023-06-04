@@ -1,3 +1,4 @@
+using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -54,5 +55,20 @@ public class PhotonEventManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log("Joined Lobby");
+    }
+
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+    {
+        #if UNITY_EDITOR
+        if (targetPlayer.IsLocal)
+        {
+            object personalIndex;
+            if (changedProps.TryGetValue("PersonalIndex", out personalIndex))
+            {
+                Debug.Log("프로퍼티 변경");
+                Debug.Log($"PersonalIndex : {personalIndex}");
+            }
+        }
+        #endif
     }
 }

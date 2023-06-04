@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
-using UnityEngine;
 using Photon.Realtime;
 using UniRx;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PhotonRoomManager : MonoBehaviourPun
 {
@@ -33,7 +31,16 @@ public class PhotonRoomManager : MonoBehaviourPun
     private void LockUpEntrance()
     {
         PhotonNetwork.CurrentRoom.IsOpen = false;
+
+        int index = 1;
+        foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
+        {
+            Hashtable _playerIndex = new Hashtable() { { "PersonalIndex", index }}; 
+            player.Value.SetCustomProperties(_playerIndex);
+            ++index;
+        }
     }
+    
     
     [PunRPC]
     public void PlayerEnterTheRoom()
