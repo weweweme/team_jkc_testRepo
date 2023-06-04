@@ -5,8 +5,6 @@ DAssets/Settings/Photon/PhotonChat/Demos/Common/EventSystemSpawner.cs,e/0/e09aa
 ^Assets/Samples/Animation Rigging/1.1.1/Animation Rigging Constraint Samples/Scripts/mParent.cs,2/4/247d3c65dee30db299ea97c60348f0dcb69eb8eb
 
 OLibrary/PackageCache/com.cysharp.unitask@f2773f585e/Runtime/UniTaskScheduler.cs,3/d/3d786c5da509a50c4555b57ee61856861af19d3b
-J
-Assets/Jinsoo/TestInput.cs,4/d/4d93440340e859903e4b31ff15f8da4a19a733ff
 O
 Assets/Jinsoo/ObstacleBumper.cs,e/5/e5f1d47d66c81a46aace523aa970fc6d1b496371
 O
