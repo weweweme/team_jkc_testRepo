@@ -72,6 +72,6 @@ public class Axe : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        collision.gameObject.GetComponent<PlayerController>().Immobilized = true;
+       // collision.gameObject.GetComponent<PlayerController>().Immobilized = true;
     }
 }
