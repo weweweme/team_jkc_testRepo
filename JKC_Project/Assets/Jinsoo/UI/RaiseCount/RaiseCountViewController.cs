@@ -6,7 +6,7 @@ public class RaiseCountViewController : ViewController
     {
         View = transform.Find("RaiseCountView").GetComponent<RaiseCountView>();
         Debug.Assert(View != null);
-        Presenter = transform.Find("AddButton").GetComponent<RaiseCountPresenter>();
+        Presenter = new RaiseCountPresenter();
         Debug.Assert(Presenter != null);
     }
 }
