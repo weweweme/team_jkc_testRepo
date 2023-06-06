@@ -11,14 +11,24 @@ public class PlayerMove : MonoBehaviour
 {
     private Rigidbody _playerRigidbody;
     private PlayerInput _playerInput;
+    private CameraAngle _camera;
     
     [SerializeField] private float _diveForce;
     [SerializeField] private float _jumpForce;
+    
+    private Vector3 _zeroVec = Vector3.zero;
+    [SerializeField] private float _rotSpeed;
+    [SerializeField] private float _moveSpeed;
 
     private void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
+    }
+
+    public void BindCameraAngle(CameraAngle cameraAngle)
+    {
+        _camera = cameraAngle;
     }
 
     private void Start()
@@ -34,6 +44,17 @@ public class PlayerMove : MonoBehaviour
 
         RecoveryState.OnRecoveryState -= ActivateRecovery;
         RecoveryState.OnRecoveryState += ActivateRecovery;
+    }
+
+    // 평지이동
+    public void Move()
+    {
+        // 인풋이 있을때만 회전을 한다. 
+        if (_playerInput.InputVec != _zeroVec && _playerInput.IsReflect == false)
+        {
+            _playerRigidbody.velocity = _playerInput.InputVec * _moveSpeed;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_playerInput.InputVec), _rotSpeed * Time.deltaTime);    
+        }
     }
 
     private void ActivateJumpAction()

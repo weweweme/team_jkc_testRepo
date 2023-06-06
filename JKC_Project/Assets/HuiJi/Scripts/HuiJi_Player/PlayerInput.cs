@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 public class PlayerInput : MonoBehaviour
 {
     public Vector3 InputVec { get; private set; }
+    public Vector2 ScreenToMousePos { get; private set; }
     
     private Animator _animator;
 
@@ -65,5 +66,13 @@ public class PlayerInput : MonoBehaviour
         {
             IsDive = false;
         }
+    }
+
+    public event Action OnMouseMove;
+    public void OnMouse(InputAction.CallbackContext context)
+    {
+        ScreenToMousePos = context.ReadValue<Vector2>();
+        Debug.Log(ScreenToMousePos);
+        OnMouseMove?.Invoke();
     }
 }
