@@ -17,10 +17,32 @@ public class PlayerInput : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
+    public event Action OnMovement;
+    
+    private void Update()
+    {
+        if (_isMoving)
+        {
+            OnMovement?.Invoke();
+        }
+    }
+
     public bool IsReflect { get; set; }
+    private bool _isMoving;
+    
     public void OnMove(InputAction.CallbackContext context)
     {
         InputVec = context.ReadValue<Vector3>();
+        
+        if (context.started)
+        {
+            _isMoving = true;
+        }
+
+        if (context.canceled)
+        {
+            _isMoving = false;
+        }
     }
 
     public bool IsJump { get; private set; }
@@ -72,7 +94,6 @@ public class PlayerInput : MonoBehaviour
     public void OnMouse(InputAction.CallbackContext context)
     {
         ScreenToMousePos = context.ReadValue<Vector2>();
-        Debug.Log(ScreenToMousePos);
         OnMouseMove?.Invoke();
     }
 }

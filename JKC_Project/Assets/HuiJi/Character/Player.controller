@@ -60,7 +60,7 @@ AnimatorState:
   m_Speed: 5
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: -1259829647984404802}
+  - {fileID: -1156505854552933349}
   m_StateMachineBehaviours:
   - {fileID: -291335479027037617}
   m_Position: {x: 50, y: 50, z: 0}
@@ -235,8 +235,8 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 40, y: 250, z: 0}
-  m_ParentStateMachinePosition: {x: 830, y: -50, z: 0}
+  m_ExitPosition: {x: -220, y: 240, z: 0}
+  m_ParentStateMachinePosition: {x: -20, y: 250, z: 0}
   m_DefaultState: {fileID: 8330284002587858758}
 --- !u!1101 &-6754328474714076737
 AnimatorStateTransition:
@@ -427,8 +427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443a9ad1f3fff4a51aea24af53c27035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 300
-  _rotSpeed: 5
 --- !u!1102 &-3277385089897700750
 AnimatorState:
   serializedVersion: 6
@@ -590,7 +588,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.1
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 1
@@ -663,7 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f00c6979b4b549c2830ef89e1fde353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1101 &-1259829647984404802
+--- !u!1101 &-1156505854552933349
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -672,12 +670,12 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 0}
+  m_DstState: {fileID: 8927000107177247512}
   m_Solo: 0
   m_Mute: 0
-  m_IsExit: 1
+  m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.1
   m_TransitionOffset: 0
   m_ExitTime: 0.37500006
   m_HasExitTime: 1
@@ -697,8 +695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7c43c3acd2c4f76a1927adc05fa084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotSpeed: 5
-  _moveSpeed: 7
 --- !u!1101 &-633777417196773155
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -905,9 +901,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.01
   m_TransitionOffset: 0
-  m_ExitTime: 0.3181818
+  m_ExitTime: 0.01
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1129,7 +1125,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FG_Dive_RollOver
-  m_Speed: 1
+  m_Speed: 5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1903301626077599055}

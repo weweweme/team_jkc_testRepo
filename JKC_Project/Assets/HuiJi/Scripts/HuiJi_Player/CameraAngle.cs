@@ -5,10 +5,10 @@ public class CameraAngle : MonoBehaviour
 {
     private PlayerInput _playerInput;
     private Transform _playerChracter;
-    public void BindPlayerData(PlayerInput playerInput, Transform playerChracter)
+    public void BindPlayerData(PlayerInput playerInput, Transform playerCharacter)
     {
         _playerInput = playerInput;
-        _playerChracter = playerChracter;
+        _playerChracter = playerCharacter;
         _playerInput.OnMouseMove -= SetCameraAngle;
         _playerInput.OnMouseMove += SetCameraAngle;
     }

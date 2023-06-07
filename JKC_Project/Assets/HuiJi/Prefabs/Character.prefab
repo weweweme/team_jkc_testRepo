@@ -1261,7 +1261,6 @@ GameObject:
   - component: {fileID: 600160651188701182}
   - component: {fileID: 5886649761485048225}
   - component: {fileID: 5886649761485048226}
-  - component: {fileID: 5886649761485048236}
   - component: {fileID: 5886649761485048239}
   - component: {fileID: 600160651188701183}
   - component: {fileID: 600160651188701176}
@@ -1339,109 +1338,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: e5021d5daa0cf4cc3b28bd9307b06d78, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.0045817746
+  m_Radius: 0.003911846
   m_Height: 0.019485941
   m_Direction: 1
-  m_Center: {x: -0.00019875019, y: 0.009748146, z: 0.0006011435}
---- !u!114 &5886649761485048236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6196898758769805118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: be941abd30563448592090634e22de22,
-    type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5886649761485048239}
-        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 88629c38-96db-4186-9e87-257b9038b167
-    m_ActionName: PlayerActions/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5886649761485048239}
-        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
-        m_MethodName: OnJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 4d814c4e-b4c5-473b-a1fb-d20e8d93b2e4
-    m_ActionName: PlayerActions/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5886649761485048239}
-        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
-        m_MethodName: OnGrab
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 1d756566-c5ab-4caa-8ac6-9ab8d616765a
-    m_ActionName: PlayerActions/Grab[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5886649761485048239}
-        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
-        m_MethodName: OnDive
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ca22c948-fb07-48de-a6b7-d691cb33f6b9
-    m_ActionName: PlayerActions/Dive[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 75110607-8b3d-43cb-9e1d-c848935ec6e0
-    m_ActionName: PlayerActions/MouseDelta[/Mouse/delta]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: PC
-  m_DefaultActionMap: PlayerActions
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Center: {x: -0.00019875019, y: 0.009748146, z: -0.00006878555}
 --- !u!114 &5886649761485048239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1494,8 +1394,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aab86becc27641e79c5092eee675ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _diveForce: 200
+  _diveForce: 130
   _jumpForce: 300
+  _rotSpeed: 4
+  _moveSpeed: 7
+  _jumpMovementForce: 300
   _diveRotationSpeed: 300
   _fallRotationSpeed: 150
 --- !u!1 &6270220618668825772
