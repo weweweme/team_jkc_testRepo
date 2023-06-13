@@ -11,14 +11,24 @@ public class PlayerMove : MonoBehaviour
 {
     private Rigidbody _playerRigidbody;
     private PlayerInput _playerInput;
+    private CameraAngle _camera;
     
     [SerializeField] private float _diveForce;
     [SerializeField] private float _jumpForce;
+    
+    private Vector3 _zeroVec = Vector3.zero;
+    [SerializeField] private float _rotSpeed;
+    [SerializeField] private float _moveSpeed;
 
     private void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
         _playerInput = GetComponent<PlayerInput>();
+    }
+
+    public void BindCameraAngle(CameraAngle cameraAngle)
+    {
+        _camera = cameraAngle;
     }
 
     private void Start()
@@ -34,6 +44,45 @@ public class PlayerMove : MonoBehaviour
 
         RecoveryState.OnRecoveryState -= ActivateRecovery;
         RecoveryState.OnRecoveryState += ActivateRecovery;
+
+        _playerInput.OnMovement -= CurrentMoveDirection;
+        _playerInput.OnMovement += CurrentMoveDirection;
+    }
+    
+    private Vector3 _forwardAngleVec;
+    private Vector3 _rightAngleVec;
+    private Vector3 _moveDir;
+    
+    // 현재 카메라 시야 기준으로 x, z축 판별 식
+    // moveDir를 이용하여 플레이어가 움직인다
+    private void CurrentMoveDirection()
+    {
+        _forwardAngleVec = new Vector3(_camera.transform.forward.x, 0f, _camera.transform.forward.z).normalized;
+        _rightAngleVec = new Vector3(_camera.transform.right.x, 0f, _camera.transform.right.z).normalized;
+        _moveDir = _forwardAngleVec * _playerInput.InputVec.z + _rightAngleVec * _playerInput.InputVec.x;
+    }
+
+    // 평지이동
+    public void Move()
+    {
+        // 인풋이 있을때만 회전을 한다. 
+        if (_playerInput.InputVec != _zeroVec && _playerInput.IsReflect == false)
+        {
+            // Debug.Log($"moveDir : {moveDir}");
+            _playerRigidbody.velocity = _moveDir * _moveSpeed;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_moveDir), _rotSpeed * Time.deltaTime);    
+        }
+    }
+
+    [SerializeField] private float _jumpMovementForce;
+    public void OnJumping()
+    {
+        // 인풋이 있을때만 회전을 한다. 
+        if (_playerInput.InputVec != _zeroVec && _playerInput.IsReflect == false)
+        {
+            _playerRigidbody.AddForce(_moveDir * _jumpMovementForce, ForceMode.Force);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_moveDir), _rotSpeed * Time.deltaTime);    
+        }
     }
 
     private void ActivateJumpAction()
@@ -123,9 +172,7 @@ public class PlayerMove : MonoBehaviour
             
             await UniTask.Yield();
         }
-
         
-       // Debug.Break();
         _playerInput.IsReflect = false;
     }
     

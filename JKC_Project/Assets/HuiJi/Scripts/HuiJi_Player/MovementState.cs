@@ -5,28 +5,18 @@ using UnityEngine;
 
 public class MovementState : StateMachineBehaviour
 {
-    private Rigidbody _playerRigidbody;
     private PlayerInput _playerInput;
-    
-    [SerializeField] private float _rotSpeed = 5f;
-    [SerializeField] private float _moveSpeed;
-    
-    private Vector3 _zeroVec = Vector3.zero;
+    private PlayerMove _playerMove;
     
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _playerRigidbody = animator.GetComponent<Rigidbody>();
         _playerInput = animator.GetComponent<PlayerInput>();
+        _playerMove = animator.GetComponent<PlayerMove>();
     }
     
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // 인풋이 있을때만 회전을 한다. 
-        if (_playerInput.InputVec != _zeroVec && _playerInput.IsReflect == false)
-        {
-            _playerRigidbody.velocity = _playerInput.InputVec * _moveSpeed;
-            animator.transform.rotation = Quaternion.Lerp(animator.transform.rotation, Quaternion.LookRotation(_playerInput.InputVec), _rotSpeed * Time.deltaTime);    
-        }
+        _playerMove.Move();
 
         // Jump키를 눌렀을때
         if (_playerInput.IsJump)

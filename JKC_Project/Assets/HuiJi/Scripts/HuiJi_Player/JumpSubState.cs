@@ -13,7 +13,6 @@ public class JumpSubState : StateMachineBehaviour
     {
         if (_playerInput.IsDive)
         {
-            Debug.Log(_playerInput.IsDive);
             animator.SetBool(AnimLiteral.ISDIVING, true);
         }
     }
