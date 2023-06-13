@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4124883842738688089}
   - component: {fileID: 4124883842738688088}
   m_Layer: 0
-  m_Name: Hoop_Propeller - 1
+  m_Name: Hoop_Propeller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
